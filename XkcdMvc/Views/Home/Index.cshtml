@@ -1,0 +1,17 @@
+﻿@model Comic
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Xkcd Comic!</h1>
+
+    <h2>@Model.title</h2>
+
+    Comic Number: @Model.num<br />
+
+    Published on @Model.year-@Model.month-@Model.day<br />
+
+    <img src="@Model.img" />
+
+</div>
