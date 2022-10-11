@@ -2,7 +2,7 @@
 
 // https://xkcd.com/info.0.json
 
-Console.WriteLine("Which comic number would you like to see?");
+Console.WriteLine("Which comic number would you like to see????");
 string entry = Console.ReadLine();
 
 // ====================
@@ -10,13 +10,24 @@ string entry = Console.ReadLine();
 HttpClient web = new HttpClient();
 web.BaseAddress = new Uri("https://xkcd.com/");
 var connection = await web.GetAsync($"{entry}/info.0.json");
-Comic com = await connection.Content.ReadAsAsync<Comic>();
+
+
+try
+{
+	Comic com = await connection.Content.ReadAsAsync<Comic>();
+	Console.WriteLine(com.alt);
+	Console.WriteLine(com.img);
+}
+catch (Exception e)
+{
+	Console.WriteLine("Sorry, I could not find that comic.");
+}
+
+
 // ====================
 
 //string result = await connection.Content.ReadAsStringAsync();
 //Console.WriteLine(result);
-Console.WriteLine(com.alt);
-Console.WriteLine(com.img);
 
 class Comic
 {

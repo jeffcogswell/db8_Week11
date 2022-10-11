@@ -4,14 +4,38 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Xkcd Comic!</h1>
+    <h1 class="display-4">Xkcd Comic!!!</h1>
 
-    <h2>@Model.title</h2>
+    @if (Model != null) {
+            <div>
+                <h2>@Model.title</h2>
 
-    Comic Number: @Model.num<br />
+                Comic Number: @Model.num<br />
 
-    Published on @Model.year-@Model.month-@Model.day<br />
+                Published on @Model.year-@Model.month-@Model.day<br />
 
-    <img src="@Model.img" />
+                <img src="@Model.img" />
 
+                <br /><br />
+
+                <div style="font-size:2em">
+                    @if (Model.num > 1) {
+                        <a href="/home/index?comicnum=@(Model.num-1)">&lt;Prev</a>
+                    }
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="/home/index?comicnum=@(Model.num+1)">Next&gt;</a>
+                </div>
+            </div>
+    }
+    else {
+        <div>
+            Sorry, that comic wasn't found.
+        </div>
+    }
+
+    <form action="/home/index">
+        What number comic would you like to see? <input type="text" name="comicnum"/>
+        <input type="submit" />
+        <br />
+    </form>
 </div>
