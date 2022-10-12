@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Simple Poker!</h1>
+
+    <form method="post" action="/home/drawfive">
+        <input type="hidden" name="which" value="1" />
+        Player 1 Name: <input type="text" name="name" />
+        <input type="submit" value="Draw 5!" />
+    </form>
+
+    Player 2 name: <input type="text" /><br />
+
+</div>
