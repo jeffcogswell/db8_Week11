@@ -41,6 +41,11 @@
                 return max;
             }
         }
+
+        public Hand()
+        {
+            Cards = new List<Card>();
+        }
     }
 
     public class Card

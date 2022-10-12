@@ -18,9 +18,27 @@ namespace PokerGame.Controllers
             return View();
         }
 
-        public IActionResult DrawFive(int which, string name)
+        async public Task<IActionResult> DrawFive(string name1, string name2)
         {
-            return Content($"{which} {name}");
+
+            // Create a new deck
+            string deck_id = await CardAPI.GetNewDeck();
+
+            // Create an instance of PokerHands
+            PokerHands poker = new PokerHands();
+
+            // Draw 5 cards for user1
+            Hand user1 = await CardAPI.GetHand(deck_id, 5);
+            user1.Username = name1;
+            poker.Player1 = user1;
+
+            // Draw 5 cards for user2
+            Hand user2 = await CardAPI.GetHand(deck_id, 5);
+            user2.Username = name2;
+            poker.Player2 = user2;
+
+            // And display ten cards and the name of the winner
+            return View(poker);
         }
 
         public IActionResult Privacy()
